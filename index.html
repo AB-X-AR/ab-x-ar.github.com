@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mashik Absar Dheen | Cybersecurity Researcher & Developer</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        * {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #e4e4e7;
+        }
+        
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glow-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .glow-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(102, 126, 234, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.2);
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        .skill-tag {
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            transition: all 0.2s ease;
+        }
+        
+        .skill-tag:hover {
+            background: rgba(102, 126, 234, 0.2);
+            border-color: rgba(102, 126, 234, 0.5);
+        }
+        
+        nav {
+            backdrop-filter: blur(10px);
+            background: rgba(10, 10, 10, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        function App() {
+            const [activeSection, setActiveSection] = useState('home');
+
+            useEffect(() => {
+                const handleScroll = () => {
+                    const sections = ['home', 'about', 'experience', 'projects', 'skills', 'contact'];
+                    const current = sections.find(section => {
+                        const element = document.getElementById(section);
+                        if (element) {
+                            const rect = element.getBoundingClientRect();
+                            return rect.top <= 100 && rect.bottom >= 100;
+                        }
+                        return false;
+                    });
+                    if (current) setActiveSection(current);
+                };
+
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            const projects = [
+                {
+                    title: "VAPOR Security Labs",
+                    description: "Custom intentionally vulnerable cybersecurity training platform simulating realistic Web Application & Infrastructure vulnerabilities",
+                    tags: ["Python", "Flask", "OWASP Top 10", "Pentesting"],
+                    link: "https://vapor-theta.vercel.app/",
+                    icon: "🛡️"
+                },
+                {
+                    title: "Xtractor",
+                    description: "Automated tool to extract exploitable HTML/JS/CSS components for bug bounty reconnaissance and Web Application pentesting",
+                    tags: ["Python", "Web Scraping", "Bug Bounty", "OSINT"],
+                    link: "#",
+                    icon: "🔍"
+                },
+                {
+                    title: "DirCop",
+                    description: "Lightweight web fuzzing tool for fast, customizable directory and parameter fuzzing",
+                    tags: ["Python", "Fuzzing", "Security Tools"],
+                    link: "#",
+                    icon: "🔨"
+                }
+            ];
+
+            const certifications = [
+                { name: "EC-Council Certified Ethical Hacker", code: "CEH v12", icon: "🎓" }
+            ];
+
+            return (
+                <div className="min-h-screen">
+                    {/* Navigation */}
+                    <nav className="fixed top-0 w-full z-50">
+                        <div className="max-w-6xl mx-auto px-6 py-4">
+                            <div className="flex justify-between items-center">
+                                <a href="#home" className="mono text-xl font-bold gradient-text">
+                                    max.cyber
+                                </a>
+                                <div className="hidden md:flex gap-8">
+                                    {['About', 'Experience', 'Projects', 'Skills', 'Contact'].map(item => (
+                                        <a
+                                            key={item}
+                                            href={`#${item.toLowerCase()}`}
+                                            className={`text-sm hover:text-purple-400 transition ${
+                                                activeSection === item.toLowerCase() ? 'text-purple-400' : 'text-gray-400'
+                                            }`}
+                                        >
+                                            {item}
+                                        </a>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+
+                    {/* Hero Section */}
+                    <section id="home" className="min-h-screen flex items-center justify-center px-6 pt-20">
+                        <div className="max-w-4xl text-center fade-in-up">
+                            <div className="mb-6">
+                                <span className="mono text-purple-400 text-sm">$ whoami</span>
+                            </div>
+                            <h1 className="text-6xl md:text-7xl font-bold mb-4">
+                                Hi, I'm <span className="gradient-text">Max</span>
+                            </h1>
+                            <p className="text-2xl md:text-3xl text-gray-400 mb-6">
+                                Cybersecurity Researcher • Developer • Instructor
+                            </p>
+                            <p className="text-lg text-gray-500 mb-8 max-w-2xl mx-auto">
+                                Certified ethical hacker passionate about offensive security, penetration testing, and building vulnerable applications for security education
+                            </p>
+                            <div className="flex gap-4 justify-center flex-wrap">
+                                <a href="#projects" className="px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg font-semibold hover:from-purple-700 hover:to-indigo-700 transition">
+                                    View Projects
+                                </a>
+                                <a href="#contact" className="px-6 py-3 border border-purple-600 rounded-lg font-semibold hover:bg-purple-600 hover:bg-opacity-10 transition">
+                                    Get In Touch
+                                </a>
+                            </div>
+                            <div className="mt-12 flex gap-6 justify-center text-sm text-gray-500">
+                                <div className="flex items-center gap-2">
+                                    <span className="text-green-400">●</span> Top 1% TryHackMe
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <span className="text-green-400">●</span> Top 100 BlackHat CTF 2025
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* About Section */}
+                    <section id="about" className="min-h-screen flex items-center justify-center px-6 py-20">
+                        <div className="max-w-5xl w-full">
+                            <h2 className="text-4xl font-bold mb-12 section-title">About Me</h2>
+                            <div className="grid md:grid-cols-2 gap-8">
+                                <div className="glow-card p-8 rounded-lg">
+                                    <h3 className="text-xl font-semibold mb-4 text-purple-400">🎯 Professional Summary</h3>
+                                    <p className="text-gray-400 leading-relaxed">
+                                        Certified cybersecurity professional seeking entry-level offensive or defensive security roles. Hands-on experience in web application penetration testing, network security testing, and vulnerability assessment. Skilled in identifying and mitigating security risks while applying OWASP Top 10 and secure coding practices.
+                                    </p>
+                                </div>
+
+                                <div className="glow-card p-8 rounded-lg">
+                                    <h3 className="text-xl font-semibold mb-4 text-purple-400">🎓 Education</h3>
+                                    <div className="space-y-2">
+                                        <p className="font-semibold">B.Tech Information Technology</p>
+                                        <p className="text-sm text-gray-400">with Cyber Security Specialization</p>
+                                        <p className="text-sm text-gray-500">Noorul Islam University, Kanyakumari</p>
+                                        <p className="text-sm text-gray-500">2020 – 2024 | CGPA: 7.63/10</p>
+                                    </div>
+                                    <div className="mt-6 pt-6 border-t border-gray-800">
+                                        {certifications.map((cert, i) => (
+                                            <div key={i} className="flex items-center gap-3">
+                                                <span className="text-2xl">{cert.icon}</span>
+                                                <div>
+                                                    <p className="font-semibold text-sm">{cert.name}</p>
+                                                    <p className="text-xs text-gray-500">{cert.code}</p>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Experience Section */}
+                    <section id="experience" className="min-h-screen flex items-center justify-center px-6 py-20">
+                        <div className="max-w-5xl w-full">
+                            <h2 className="text-4xl font-bold mb-12 section-title">Experience</h2>
+                            
+                            <div className="glow-card p-8 rounded-lg mb-8">
+                                <div className="flex justify-between items-start mb-4 flex-wrap gap-4">
+                                    <div>
+                                        <h3 className="text-2xl font-semibold text-purple-400">Cyber Security Instructor</h3>
+                                        <p className="text-gray-400">Cyber Heals</p>
+                                    </div>
+                                    <span className="text-sm text-gray-500 mono">Sep 2024 – May 2025</span>
+                                </div>
+                                <ul className="space-y-3 text-gray-400">
+                                    <li className="flex gap-3">
+                                        <span className="text-purple-400">▹</span>
+                                        <span>Delivered 10+ lectures and workshops on cybersecurity across colleges including Jamal Mohamed College, Saveetha Engineering College, and Siva Nada University</span>
+                                    </li>
+                                    <li className="flex gap-3">
+                                        <span className="text-purple-400">▹</span>
+                                        <span>Served as invigilator for HackQuest 2K25 CTF at JMC, Trichy</span>
+                                    </li>
+                                    <li className="flex gap-3">
+                                        <span className="text-purple-400">▹</span>
+                                        <span>Trained 300+ students across different colleges</span>
+                                    </li>
+                                    <li className="flex gap-3">
+                                        <span className="text-purple-400">▹</span>
+                                        <span>Taught hands-on skills using Burp Suite, Nmap, Wireshark, Linux and guided students in penetration testing</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div className="glow-card p-8 rounded-lg">
+                                <h3 className="text-xl font-semibold mb-4 text-purple-400">🏆 Achievements & Activities</h3>
+                                <div className="grid md:grid-cols-2 gap-4">
+                                    <div className="flex items-start gap-3">
+                                        <span className="text-green-400 text-xl">✓</span>
+                                        <div>
+                                            <p className="font-semibold">Top 1% TryHackMe</p>
+                                            <p className="text-sm text-gray-500">Consistently ranked in top 1%</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-start gap-3">
+                                        <span className="text-green-400 text-xl">✓</span>
+                                        <div>
+                                            <p className="font-semibold">Top 100 BlackHat USA</p>
+                                            <p className="text-sm text-gray-500">w/ BUGCROWD CTF 2025</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-start gap-3">
+                                        <span className="text-green-400 text-xl">✓</span>
+                                        <div>
+                                            <p className="font-semibold">CTF Write-ups</p>
+                                            <p className="text-sm text-gray-500">Published on blog & Medium</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-start gap-3">
+                                        <span className="text-green-400 text-xl">✓</span>
+                                        <div>
+                                            <p className="font-semibold">Active Contributor</p>
+                                            <p className="text-sm text-gray-500">Open source security tools</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Projects Section */}
+                    <section id="projects" className="min-h-screen flex items-center justify-center px-6 py-20">
+                        <div className="max-w-5xl w-full">
+                            <h2 className="text-4xl font-bold mb-12 section-title">Featured Projects</h2>
+                            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                {projects.map((project, i) => (
+                                    <a
+                                        key={i}
+                                        href={project.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="glow-card p-6 rounded-lg block"
+                                    >
+                                        <div className="text-4xl mb-4">{project.icon}</div>
+                                        <h3 className="text-xl font-semibold mb-3">{project.title}</h3>
+                                        <p className="text-gray-400 text-sm mb-4 leading-relaxed">
+                                            {project.description}
+                                        </p>
+                                        <div className="flex flex-wrap gap-2">
+                                            {project.tags.map((tag, j) => (
+                                                <span key={j} className="text-xs px-2 py-1 bg-purple-600 bg-opacity-20 text-purple-300 rounded">
+                                                    {tag}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Skills Section */}
+                    <section id="skills" className="min-h-screen flex items-center justify-center px-6 py-20">
+                        <div className="max-w-5xl w-full">
+                            <h2 className="text-4xl font-bold mb-12 section-title">Skills & Expertise</h2>
+                            
+                            <div className="grid md:grid-cols-2 gap-8 mb-8">
+                                <div className="glow-card p-6 rounded-lg">
+                                    <h3 className="text-xl font-semibold mb-4 text-purple-400">🔧 Security Tools</h3>
+                                    <div className="flex flex-wrap gap-2">
+                                        {['Burp Suite Pro', 'Nmap', 'Wireshark', 'Nikto', 'Nessus', 'OWASP ZAP', 'SQLMap', 'Nuclei', 'Metasploit'].map(skill => (
+                                            <span key={skill} className="skill-tag px-3 py-1 rounded text-sm">{skill}</span>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div className="glow-card p-6 rounded-lg">
+                                    <h3 className="text-xl font-semibold mb-4 text-purple-400">💻 Programming & Databases</h3>
+                                    <div className="flex flex-wrap gap-2">
+                                        {['Python', 'JavaScript', 'Bash', 'Node.js', 'Flask', 'Django', 'FastAPI', 'SQL', 'MongoDB'].map(skill => (
+                                            <span key={skill} className="skill-tag px-3 py-1 rounded text-sm">{skill}</span>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div className="glow-card p-6 rounded-lg">
+                                    <h3 className="text-xl font-semibold mb-4 text-purple-400">🛡️ Security Domains</h3>
+                                    <div className="flex flex-wrap gap-2">
+                                        {['Penetration Testing', 'Vulnerability Assessment', 'Network Security', 'API Security', 'Cloud Security', 'Threat Modeling', 'Risk Assessment'].map(skill => (
+                                            <span key={skill} className="skill-tag px-3 py-1 rounded text-sm">{skill}</span>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div className="glow-card p-6 rounded-lg">
+                                    <h3 className="text-xl font-semibold mb-4 text-purple-400">📚 Frameworks & Standards</h3>
+                                    <div className="flex flex-wrap gap-2">
+                                        {['OWASP Top 10', 'MITRE ATT&CK', 'NIST', 'ISO 27001', 'CVSS', 'CVE', 'CWE', 'REST API'].map(skill => (
+                                            <span key={skill} className="skill-tag px-3 py-1 rounded text-sm">{skill}</span>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="grid md:grid-cols-2 gap-8">
+                                <div className="glow-card p-6 rounded-lg">
+                                    <h3 className="text-xl font-semibold mb-4 text-purple-400">☁️ Cloud Platforms</h3>
+                                    <div className="flex flex-wrap gap-2">
+                                        {['AWS', 'Azure', 'GCP'].map(skill => (
+                                            <span key={skill} className="skill-tag px-3 py-1 rounded text-sm">{skill}</span>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div className="glow-card p-6 rounded-lg">
+                                    <h3 className="text-xl font-semibold mb-4 text-purple-400">🐧 Operating Systems</h3>
+                                    <div className="flex flex-wrap gap-2">
+                                        {['Kali Linux', 'Parrot OS', 'Ubuntu', 'Arch Linux', 'Windows', 'Tails OS'].map(skill => (
+                                            <span key={skill} className="skill-tag px-3 py-1 rounded text-sm">{skill}</span>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Contact Section */}
+                    <section id="contact" className="min-h-screen flex items-center justify-center px-6 py-20">
+                        <div className="max-w-3xl w-full text-center">
+                            <h2 className="text-4xl font-bold mb-6">Get In Touch</h2>
+                            <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
+                                I'm currently seeking opportunities in offensive/defensive security roles. Whether you have a question or just want to connect, feel free to reach out!
+                            </p>
+                            
+                            <div className="glow-card p-8 rounded-lg inline-block">
+                                <div className="flex flex-col gap-4">
+                                    <a href="mailto:your.email@example.com" className="flex items-center gap-3 text-lg hover:text-purple-400 transition">
+                                        <span>📧</span>
+                                        <span>mashikabsardheen@gmail.com</span>
+                                    </a>
+                                    <a href="https://github.com/AB-X-AR" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-lg hover:text-purple-400 transition">
+                                        <span>💻</span>
+                                        <span>GitHub</span>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/mashik-absar-dheen" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-lg hover:text-purple-400 transition">
+                                        <span>💼</span>
+                                        <span>LinkedIn</span>
+                                    </a>
+                                    <a href="https://medium.com/@abxar" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-lg hover:text-purple-400 transition">
+                                        <span>📝</span>
+                                        <span>Medium Blog</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Footer */}
+                    <footer className="border-t border-gray-900 py-8 text-center text-gray-500 text-sm">
+                        <p className="mono">Built with React • Designed by Max</p>
+                        <p className="mt-2">© 2025 All Rights Reserved</p>
+                    </footer>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
