@@ -1,477 +1,857 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mashik Absar Dheen | Cybersecurity Researcher & Developer</title>
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
-        
-        * {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #0a0a0a;
-            color: #e4e4e7;
-        }
-        
-        .mono {
-            font-family: 'JetBrains Mono', monospace;
-        }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .glow-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .glow-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(102, 126, 234, 0.5);
-            transform: translateY(-4px);
-            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.2);
-        }
-        
-        .section-title {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 2px;
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .fade-in-up {
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-        
-        .skill-tag {
-            background: rgba(102, 126, 234, 0.1);
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            transition: all 0.2s ease;
-        }
-        
-        .skill-tag:hover {
-            background: rgba(102, 126, 234, 0.2);
-            border-color: rgba(102, 126, 234, 0.5);
-        }
-        
-        nav {
-            backdrop-filter: blur(10px);
-            background: rgba(10, 10, 10, 0.8);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-    </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ABXAR — Cybersecurity Researcher & Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --g:#00FF94;--c:#00D4FF;--p:#FF3CAC;--o:#FF7849;--y:#FFD60A;--v:#B668FF;
+  --ink:#05050F;--ink2:#0A0A1A;--ink3:#111125;
+  --bdr:rgba(255,255,255,0.07);--muted:#555577;--txt:#B8B4D8;--wh:#EEEAFF;
+  --disp:'Bebas Neue',sans-serif;--mono:'JetBrains Mono',monospace;--body:'Manrope',sans-serif;
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--ink);color:var(--txt);overflow-x:hidden;line-height:1.65;cursor:none}
+#cur{position:fixed;width:10px;height:10px;background:var(--g);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:width .2s,height .2s}
+#cur-r{position:fixed;width:30px;height:30px;border:1px solid rgba(15,255,159,.3);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%)}
+body a,body button{cursor:none}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--ink2)}::-webkit-scrollbar-thumb{background:var(--g);border-radius:2px}
+body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E")}
+.wrap{max-width:1240px;margin:0 auto;padding:0 32px;position:relative;z-index:2}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border-radius:6px;font-weight:600;font-size:.88rem;font-family:var(--body);transition:all .25s var(--ease);border:none;cursor:none;letter-spacing:.3px}
+.btn-g{background:var(--g);color:var(--ink);font-weight:700;box-shadow:0 0 24px rgba(15,255,159,.25)}
+.btn-g:hover{box-shadow:0 0 48px rgba(15,255,159,.55);transform:translateY(-2px)}
+.btn-o{background:transparent;color:var(--g);border:1.5px solid rgba(15,255,159,.5)}
+.btn-o:hover{background:rgba(15,255,159,.07);transform:translateY(-2px)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:900;padding:20px 0;transition:all .35s var(--ease)}
+nav.on{background:rgba(5,5,15,.94);backdrop-filter:blur(24px);padding:13px 0;border-bottom:1px solid rgba(15,255,159,.07)}
+.nav-in{display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:var(--mono);font-size:1rem;font-weight:700;color:var(--wh);display:flex;align-items:center;gap:6px}
+.logo .lb,.logo .rb{color:var(--g)}
+.logo-blink{width:8px;height:14px;background:var(--g);display:inline-block;margin-left:2px;animation:blink 1.2s step-end infinite;vertical-align:middle}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.nav-ul{display:flex;align-items:center;gap:28px}
+.nav-ul a{font-family:var(--mono);font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);transition:color .2s;position:relative}
+.nav-ul a.on,.nav-ul a:hover{color:var(--g)}
+.nav-ul a.on::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--g)}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:4px;cursor:none}
+.ham span{display:block;width:20px;height:1.5px;background:var(--wh);border-radius:1px;transition:.3s}
+.ham.on span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.ham.on span:nth-child(2){opacity:0}
+.ham.on span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mob{display:none;flex-direction:column;background:var(--ink2);border-top:1px solid var(--bdr)}
+.mob a{padding:14px 32px;font-family:var(--mono);font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--txt);border-bottom:1px solid var(--bdr);transition:color .2s}
+.mob a:hover{color:var(--g)}
+.mob.on{display:flex}
+
+/* HERO */
+#home{min-height:100vh;display:flex;align-items:center;padding-top:80px;position:relative;overflow:hidden}
+.hbg{position:absolute;inset:0;z-index:0}
+.hbg-grid{position:absolute;inset:0;opacity:.03;background-image:linear-gradient(var(--g) 1px,transparent 1px),linear-gradient(90deg,var(--g) 1px,transparent 1px);background-size:64px 64px}
+.orb{position:absolute;border-radius:50%;filter:blur(110px);opacity:.4;pointer-events:none}
+.o1{width:600px;height:600px;background:radial-gradient(var(--g),transparent 70%);top:-150px;right:-150px;animation:d1 14s ease-in-out infinite}
+.o2{width:500px;height:500px;background:radial-gradient(var(--p),transparent 70%);bottom:-100px;left:-100px;animation:d2 17s ease-in-out infinite}
+.o3{width:350px;height:350px;background:radial-gradient(var(--c),transparent 70%);top:50%;left:40%;animation:d3 11s ease-in-out infinite}
+@keyframes d1{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,30px)}}
+@keyframes d2{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-25px)}}
+@keyframes d3{0%,100%{transform:translate(0,0)}50%{transform:translate(-20px,20px)}}
+
+.hero-in{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding:56px 0;min-width:0}
+.hero-left{min-width:0;overflow-wrap:break-word}
+.hero-prompt{font-family:var(--mono);font-size:.78rem;color:var(--g);margin-bottom:20px;opacity:.8}
+.hero-prompt .ps{color:var(--muted)}
+
+h1.ht{font-family:var(--disp);font-size:clamp(3.5rem,6vw,6.5rem);font-weight:400;line-height:.95;letter-spacing:2px;color:var(--wh);margin-bottom:12px;overflow-wrap:break-word}
+h1.ht .gname{
+  display:block;letter-spacing:4px;
+  background:linear-gradient(90deg,var(--g) 0%,var(--c) 35%,var(--p) 70%,var(--g) 100%);
+  background-size:250% 100%;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:shift 5s linear infinite
+}
+@keyframes shift{0%{background-position:0%}100%{background-position:250%}}
+.hero-role{font-family:var(--mono);font-size:.78rem;color:var(--c);margin-bottom:18px;letter-spacing:1px}
+.hero-desc{font-size:.97rem;color:var(--txt);line-height:1.78;margin-bottom:30px;max-width:460px;overflow-wrap:break-word}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:36px}
+.hero-chips{display:flex;gap:10px;flex-wrap:wrap}
+.chip{display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.65rem;color:var(--txt);background:rgba(255,255,255,.04);border:1px solid var(--bdr);border-radius:4px;padding:6px 12px;letter-spacing:.5px}
+.chip .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.dg{background:var(--g);box-shadow:0 0 6px var(--g)}
+.dc{background:var(--c);box-shadow:0 0 6px var(--c)}
+.dp{background:var(--p);box-shadow:0 0 6px var(--p)}
+
+/* TERMINAL */
+.terminal{background:var(--ink2);border:1px solid rgba(15,255,159,.18);border-radius:14px;overflow:hidden;box-shadow:0 0 80px rgba(15,255,159,.06),0 32px 80px rgba(0,0,0,.7)}
+.tb{background:var(--ink3);padding:11px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--bdr)}
+.td{width:11px;height:11px;border-radius:50%}
+.td.r{background:#FF5F57}.td.y{background:#FEBC2E}.td.gg{background:#28C840}
+.tt{font-family:var(--mono);font-size:.65rem;color:var(--muted);margin-left:auto;letter-spacing:1px}
+.tbody{padding:18px 20px;height:340px;overflow-y:auto;display:flex;flex-direction:column;gap:1px}
+.tbody::-webkit-scrollbar{width:3px}
+.tbody::-webkit-scrollbar-thumb{background:rgba(15,255,159,.25);border-radius:2px}
+.t-line{font-family:var(--mono);font-size:.75rem;line-height:1.65;white-space:pre-wrap;word-break:break-word}
+.tps{color:var(--g)}.tcmd{color:var(--wh)}
+.g{color:var(--g)}.c{color:var(--c)}.p{color:var(--p)}.y{color:var(--y)}.v{color:var(--v)}.o{color:var(--o)}
+.wh{color:var(--wh);font-weight:700}.dim{color:var(--muted)}
+.t-input-row{display:flex;align-items:center;gap:8px;padding:10px 20px;border-top:1px solid var(--bdr);background:var(--ink3)}
+.t-input-ps{font-family:var(--mono);font-size:.75rem;color:var(--g);white-space:nowrap;flex-shrink:0}
+.t-input{flex:1;background:none;border:none;outline:none;font-family:var(--mono);font-size:.75rem;color:var(--wh);caret-color:var(--g)}
+.t-input::placeholder{color:var(--muted)}
+
+/* SECTIONS */
+section{padding:88px 0;position:relative;z-index:2}
+.ey{font-family:var(--mono);font-size:.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--g);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.ey::before{content:'';width:18px;height:1px;background:var(--g)}
+.st{font-family:var(--disp);font-size:clamp(2.5rem,4vw,4rem);font-weight:400;color:var(--wh);letter-spacing:2px;margin-bottom:10px;overflow-wrap:break-word}
+.st em{font-style:normal;color:var(--g)}
+.ss{font-size:.92rem;color:var(--txt);max-width:520px;line-height:1.72}
+
+/* STATS */
+#stats{padding:0;border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr)}
+.srow{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bdr)}
+.sb{background:var(--ink);padding:32px 24px;text-align:center;transition:background .3s}
+.sb:hover{background:var(--ink2)}
+.sn{font-family:var(--disp);font-size:3rem;font-weight:400;line-height:1;margin-bottom:7px;letter-spacing:2px}
+.sn.g{color:var(--g)}.sn.c{color:var(--c)}.sn.p{color:var(--p)}.sn.y{color:var(--y)}
+.sl{font-family:var(--mono);font-size:.62rem;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase}
+
+/* ABOUT */
+#about{background:linear-gradient(180deg,var(--ink) 0%,var(--ink2) 60%,var(--ink) 100%)}
+.about-g{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:44px}
+.ac{background:rgba(255,255,255,.025);border:1px solid var(--bdr);border-radius:12px;padding:32px;transition:all .3s;position:relative;overflow:hidden}
+.ac::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--g),var(--c));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.ac:hover{border-color:rgba(15,255,159,.18);background:rgba(15,255,159,.02)}
+.ac:hover::before{transform:scaleX(1)}
+.ac-h{font-family:var(--mono);font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--g);margin-bottom:18px;display:flex;align-items:center;gap:7px}
+.ac p{color:var(--txt);font-size:.9rem;line-height:1.78}
+.edu-name{font-family:var(--disp);font-size:1.5rem;font-weight:400;color:var(--wh);letter-spacing:1px;margin-bottom:3px}
+.edu-d{font-size:.82rem;color:var(--c);margin-bottom:2px}
+.edu-i{font-family:var(--mono);font-size:.68rem;color:var(--muted)}
+.cert{display:flex;align-items:center;gap:12px;margin-top:20px;padding-top:18px;border-top:1px solid var(--bdr)}
+.cert-b{background:rgba(15,255,159,.08);border:1px solid rgba(15,255,159,.2);border-radius:8px;padding:10px 14px}
+.cert-n{font-weight:600;color:var(--wh);font-size:.84rem}
+.cert-c{font-family:var(--mono);font-size:.65rem;color:var(--g);margin-top:2px}
+
+/* EXPERIENCE */
+.exp-c{background:rgba(255,255,255,.025);border:1px solid var(--bdr);border-radius:12px;padding:36px;margin-bottom:20px;transition:all .3s}
+.exp-c:hover{border-color:rgba(0,207,255,.2);background:rgba(0,207,255,.02)}
+.exp-h{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:14px;margin-bottom:20px}
+.exp-r{font-family:var(--disp);font-size:1.8rem;font-weight:400;color:var(--wh);letter-spacing:1px}
+.exp-co{font-family:var(--mono);font-size:.7rem;color:var(--c);margin-top:3px;letter-spacing:.5px}
+.exp-d{font-family:var(--mono);font-size:.65rem;color:var(--muted);background:rgba(255,255,255,.04);padding:5px 12px;border-radius:4px}
+.exp-list{display:flex;flex-direction:column;gap:10px}
+.exp-i{display:flex;gap:10px;font-size:.87rem;color:var(--txt);line-height:1.62}
+.exp-i::before{content:'▸';color:var(--g);flex-shrink:0;margin-top:2px}
+.ach-g{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.ach{background:rgba(255,255,255,.025);border:1px solid var(--bdr);border-radius:10px;padding:18px;display:flex;gap:12px;align-items:flex-start;transition:all .3s}
+.ach:hover{border-color:rgba(15,255,159,.2);background:rgba(15,255,159,.02)}
+.ach-ic{font-size:1.4rem;flex-shrink:0}
+.ach-t{font-weight:600;color:var(--wh);font-size:.86rem}
+.ach-s{font-family:var(--mono);font-size:.64rem;color:var(--muted);margin-top:2px}
+
+/* PROJECTS */
+#projects{background:var(--ink2)}
+.proj-g{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
+.pc{background:rgba(255,255,255,.025);border:1px solid var(--bdr);border-radius:12px;padding:26px;transition:all .3s var(--ease);position:relative;overflow:hidden;text-decoration:none;color:inherit;display:block}
+.pc::after{content:'↗';position:absolute;top:18px;right:18px;font-size:.9rem;color:var(--muted);transition:all .3s}
+.pc:hover{transform:translateY(-7px);box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.pc:hover::after{transform:translate(3px,-3px)}
+.pc-ic{width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:18px}
+.pc-t{font-family:var(--disp);font-size:1.4rem;font-weight:400;color:var(--wh);letter-spacing:1px;margin-bottom:8px}
+.pc-d{font-size:.8rem;color:var(--txt);line-height:1.62;margin-bottom:16px}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tg{font-family:var(--mono);font-size:.6rem;padding:3px 9px;border-radius:4px;letter-spacing:.5px}
+
+/* SKILLS */
+.sk-g{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:44px}
+.sk-c{background:rgba(255,255,255,.025);border:1px solid var(--bdr);border-radius:12px;padding:26px;transition:all .3s}
+.sk-c:hover{border-color:rgba(15,255,159,.15);background:rgba(15,255,159,.02)}
+.sk-h{font-family:var(--mono);font-size:.64px;letter-spacing:2px;text-transform:uppercase;color:var(--c);margin-bottom:14px;font-size:.64rem}
+.pills{display:flex;flex-wrap:wrap;gap:7px}
+.pill{font-family:var(--mono);font-size:.66rem;padding:4px 11px;border-radius:4px;background:rgba(255,255,255,.04);border:1px solid var(--bdr);color:var(--txt);transition:all .2s;letter-spacing:.3px}
+.pill:hover{background:rgba(15,255,159,.09);border-color:rgba(15,255,159,.3);color:var(--g)}
+
+/* CONTACT */
+#contact{background:var(--ink2)}
+.ct-in{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;margin-top:44px}
+.ct-tl{font-family:var(--disp);font-size:clamp(2rem,3vw,3rem);font-weight:400;color:var(--wh);line-height:1.1;margin-bottom:14px;letter-spacing:2px}
+.ct-desc{color:var(--txt);font-size:.9rem;line-height:1.75;margin-bottom:28px}
+.cl{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.025);border:1px solid var(--bdr);border-radius:10px;padding:14px 18px;transition:all .3s;text-decoration:none;color:inherit;margin-bottom:12px}
+.cl:hover{border-color:rgba(15,255,159,.3);background:rgba(15,255,159,.04);transform:translateX(5px)}
+.cl-ic{width:38px;height:38px;border-radius:8px;background:rgba(15,255,159,.08);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.cl-l{font-family:var(--mono);font-size:.6rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+.cl-v{font-size:.87rem;color:var(--wh);font-weight:500;margin-top:2px}
+.status-box{background:rgba(255,255,255,.025);border:1px solid rgba(15,255,159,.15);border-radius:12px;padding:28px}
+.sb-top{display:flex;align-items:center;gap:9px;margin-bottom:20px}
+.sb-dot{width:9px;height:9px;background:var(--g);border-radius:50%;box-shadow:0 0 10px var(--g);animation:pg 2s infinite}
+@keyframes pg{0%,100%{box-shadow:0 0 6px var(--g)}50%{box-shadow:0 0 18px var(--g)}}
+.sb-lbl{font-family:var(--mono);font-size:.67rem;color:var(--g);letter-spacing:1px}
+.sb-t{font-family:var(--disp);font-size:1.6rem;font-weight:400;color:var(--wh);letter-spacing:1px;margin-bottom:8px}
+.sb-d{font-size:.83rem;color:var(--txt);line-height:1.68;margin-bottom:16px}
+.sb-tags{display:flex;flex-wrap:wrap;gap:7px}
+.stag{font-family:var(--mono);font-size:.64rem;padding:4px 11px;border-radius:4px;background:rgba(15,255,159,.07);color:var(--g);border:1px solid rgba(15,255,159,.15)}
+
+/* FOOTER */
+footer{padding:36px 0;border-top:1px solid var(--bdr)}
+.ft{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.fl{font-family:var(--mono);font-size:.82rem;color:var(--wh)}.fl span{color:var(--g)}
+.fc{font-family:var(--mono);font-size:.64rem;color:var(--muted)}
+.fls{display:flex;gap:18px}
+.fls a{font-family:var(--mono);font-size:.64rem;color:var(--muted);transition:color .2s;letter-spacing:.5px}
+.fls a:hover{color:var(--g)}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .55s var(--ease),transform .55s var(--ease)}
+.rv.on{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+/* RESPONSIVE */
+@media(max-width:1024px){.proj-g{grid-template-columns:repeat(2,1fr)}.srow{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){
+  .nav-ul{display:none}.ham{display:flex}
+  .hero-in,.about-g,.ct-in,.ach-g{grid-template-columns:1fr}
+  .sk-g{grid-template-columns:1fr}.proj-g{grid-template-columns:1fr}
+  .ft{flex-direction:column;text-align:center}
+}
+@media(max-width:480px){
+  .wrap{padding:0 16px}
+  h1.ht{font-size:3.2rem}
+  .hero-btns{flex-direction:column}
+  .hero-btns .btn{width:100%;justify-content:center}
+  .srow{grid-template-columns:1fr 1fr}
+}
+</style>
 </head>
 <body>
-    <div id="root"></div>
 
-    <script type="text/babel">
-        const { useState, useEffect } = React;
+<div id="cur"></div><div id="cur-r"></div>
 
-        function App() {
-            const [activeSection, setActiveSection] = useState('home');
+<!-- NAV -->
+<nav id="nav">
+  <div class="wrap">
+    <div class="nav-in">
+      <a href="#home" class="logo"><span class="lb">[</span>abxar<span class="rb">]</span><span class="logo-blink"></span></a>
+      <div class="nav-ul">
+        <a href="#about" data-s="about">About</a>
+        <a href="#experience" data-s="experience">Experience</a>
+        <a href="#projects" data-s="projects">Projects</a>
+        <a href="#skills" data-s="skills">Skills</a>
+        <a href="#contact" data-s="contact">Contact</a>
+      </div>
+      <button class="ham" id="ham" aria-label="menu"><span></span><span></span><span></span></button>
+    </div>
+    <div class="mob" id="mob">
+      <a href="#about">About</a><a href="#experience">Experience</a>
+      <a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
 
-            useEffect(() => {
-                const handleScroll = () => {
-                    const sections = ['home', 'about', 'experience', 'projects', 'skills', 'contact'];
-                    const current = sections.find(section => {
-                        const element = document.getElementById(section);
-                        if (element) {
-                            const rect = element.getBoundingClientRect();
-                            return rect.top <= 100 && rect.bottom >= 100;
-                        }
-                        return false;
-                    });
-                    if (current) setActiveSection(current);
-                };
+<!-- HERO -->
+<section id="home">
+  <div class="hbg"><div class="hbg-grid"></div><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
+  <div class="wrap">
+    <div class="hero-in">
+      <div class="hero-left">
+        <div class="hero-prompt"><span class="ps">~/abxar $</span> whoami</div>
+        <h1 class="ht">HI, I'M<br><span class="gname">ABXAR</span></h1>
+        <div class="hero-role">// Cybersecurity Researcher • Developer • Instructor</div>
+        <p class="hero-desc">Certified ethical hacker passionate about offensive security, penetration testing, and building vulnerable applications for security education.</p>
+        <div class="hero-btns">
+          <a href="#projects" class="btn btn-g">View Projects →</a>
+          <a href="#contact" class="btn btn-o">Get In Touch</a>
+        </div>
+        <div class="hero-chips">
+          <div class="chip"><span class="dot dg"></span>Top 1% TryHackMe</div>
+          <div class="chip"><span class="dot dp"></span>Top 100 BlackHat CTF</div>
+          <div class="chip"><span class="dot dc"></span>CEH v12</div>
+        </div>
+      </div>
 
-                window.addEventListener('scroll', handleScroll);
-                return () => window.removeEventListener('scroll', handleScroll);
-            }, []);
+      <!-- INTERACTIVE TERMINAL -->
+      <div class="terminal" id="terminal">
+        <div class="tb">
+          <div class="td r"></div><div class="td y"></div><div class="td gg"></div>
+          <div class="tt">abxar@kali — bash</div>
+        </div>
+        <div class="tbody" id="tBody"></div>
+        <div class="t-input-row">
+          <span class="t-input-ps">abxar@kali:~$</span>
+          <input class="t-input" id="tInput" type="text" placeholder="$ type help here..." autocomplete="off" spellcheck="false"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            const projects = [
-                {
-                    title: "VAPOR Security Labs",
-                    description: "Custom intentionally vulnerable cybersecurity training platform simulating realistic Web Application & Infrastructure vulnerabilities",
-                    tags: ["Python", "Flask", "OWASP Top 10", "Pentesting"],
-                    link: "https://vapor-theta.vercel.app/",
-                    icon: "🛡️"
-                },
-                {
-                    title: "SecPulse",
-                    description: "AI-powered vulnerability intelligence platform that transforms CVE noise into actionable security insights",
-                    tags: ["CVEs, Automation, Vulnerability"],
-                    link: "https://sec-pulse.vercel.app/",
-                    icon: "⚡"
-                },
-                {
-                    title: "Xtractor",
-                    description: "Automated tool to extract exploitable HTML/JS/CSS components for bug bounty reconnaissance and Web Application pentesting",
-                    tags: ["Python", "Web Scraping", "Bug Bounty", "OSINT"],
-                    link: "https://github.com/AB-X-AR/XTRACTOR",
-                    icon: "🔍"
-                },
-                {
-                    title: "Inspectre",
-                    description: "A lightweight JavaScript bookmarklet tool for instant form reconnaissance.",
-                    tags: ["Javascript", "Bookmarklet", "Security Tools"],
-                    link: "https://github.com/AB-X-AR/InSpectre",
-                    icon: "🌐"
-                },
-                {
-                    title: "XSSPRAY",
-                    description: "A Chrome extension for security researchers and penetration testers to efficiently test XSS payloads during authorized security assessments.",
-                    tags: ["Javascript", "Extension", "Chrome"],
-                    link: "https://github.com/AB-X-AR/xsspray",
-                    icon: "🔦"
-                },
-                {
-                    title: "DirCop",
-                    description: "Lightweight web fuzzing tool for fast, customizable directory and parameter fuzzing",
-                    tags: ["Python", "Fuzzing", "Security Tools"],
-                    link: "https://github.com/AB-X-AR/DirCop",
-                    icon: "🔨"
-                }
-            ];
+<!-- STATS -->
+<section id="stats" style="padding:0">
+  <div class="srow">
+    <div class="sb rv"><div class="sn g">6+</div><div class="sl">Tools Built</div></div>
+    <div class="sb rv d1"><div class="sn c">300+</div><div class="sl">Students Trained</div></div>
+    <div class="sb rv d2"><div class="sn p">Top 1%</div><div class="sl">TryHackMe</div></div>
+    <div class="sb rv d3"><div class="sn y">Top 100</div><div class="sl">BlackHat CTF 2025</div></div>
+  </div>
+</section>
 
-            const certifications = [
-                { name: "EC-Council Certified Ethical Hacker", code: "CEH v12", icon: "🎓" }
-            ];
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="ey">Profile</div>
+    <h2 class="st">ABOUT <em>ME</em></h2>
+    <div class="about-g">
+      <div class="ac rv">
+        <div class="ac-h">🎯 Professional Summary</div>
+        <p>Certified cybersecurity professional seeking entry-level offensive or defensive security roles. Hands-on experience in web application penetration testing, network security testing, and vulnerability assessment. Skilled in identifying and mitigating security risks while applying OWASP Top 10 and secure coding practices.</p>
+      </div>
+      <div class="ac rv d1">
+        <div class="ac-h">🎓 Education</div>
+        <div class="edu-name">B.Tech Info Tech</div>
+        <div class="edu-d">with Cyber Security Specialization</div>
+        <div class="edu-i">Noorul Islam University, Kanyakumari</div>
+        <div class="edu-i" style="margin-top:3px">2020 – 2024 &nbsp;|&nbsp; CGPA: 7.63 / 10</div>
+        <div class="cert">
+          <div class="cert-b"><div class="cert-n">EC-Council Certified Ethical Hacker</div><div class="cert-c">CEH v12</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            return (
-                <div className="min-h-screen">
-                    {/* Navigation */}
-                    <nav className="fixed top-0 w-full z-50">
-                        <div className="max-w-6xl mx-auto px-6 py-4">
-                            <div className="flex justify-between items-center">
-                                <a href="#home" className="mono text-xl font-bold gradient-text">
-                                    abxar.cyber
-                                </a>
-                                <div className="hidden md:flex gap-8">
-                                    {['About', 'Experience', 'Projects', 'Skills', 'Contact'].map(item => (
-                                        <a
-                                            key={item}
-                                            href={`#${item.toLowerCase()}`}
-                                            className={`text-sm hover:text-purple-400 transition ${
-                                                activeSection === item.toLowerCase() ? 'text-purple-400' : 'text-gray-400'
-                                            }`}
-                                        >
-                                            {item}
-                                        </a>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    </nav>
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="ey">Work</div>
+    <h2 class="st">EXPERIENCE &amp; <em>ACHIEVEMENTS</em></h2>
+    <div class="exp-c rv" style="margin-top:44px">
+      <div class="exp-h">
+        <div><div class="exp-r">Cyber Security Instructor</div><div class="exp-co">// Cyber Heals</div></div>
+        <div class="exp-d">Sep 2024 – May 2025</div>
+      </div>
+      <div class="exp-list">
+        <div class="exp-i">Delivered 10+ lectures and workshops on cybersecurity across colleges including Jamal Mohamed College, Saveetha Engineering College, and Siva Nada University.</div>
+        <div class="exp-i">Served as invigilator for HackQuest 2K25 CTF at JMC, Trichy.</div>
+        <div class="exp-i">Trained 300+ students across different colleges on real-world security concepts.</div>
+        <div class="exp-i">Taught hands-on skills using Burp Suite, Nmap, Wireshark, Linux and guided students in penetration testing.</div>
+      </div>
+    </div>
+    <div class="exp-c rv d1">
+      <div class="ac-h" style="margin-bottom:18px">🏆 Achievements & Activities</div>
+      <div class="ach-g">
+        <div class="ach"><div class="ach-ic">🥇</div><div><div class="ach-t">Top 1% TryHackMe</div><div class="ach-s">Consistently ranked in top 1%</div></div></div>
+        <div class="ach"><div class="ach-ic">🏴</div><div><div class="ach-t">Top 100 BlackHat USA</div><div class="ach-s">w/ BUGCROWD CTF 2025</div></div></div>
+        <div class="ach"><div class="ach-ic">✍️</div><div><div class="ach-t">CTF Write-ups</div><div class="ach-s">Published on blog & Medium</div></div></div>
+        <div class="ach"><div class="ach-ic">⚙️</div><div><div class="ach-t">Active Contributor</div><div class="ach-s">Open source security tools</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-                    {/* Hero Section */}
-                    <section id="home" className="min-h-screen flex items-center justify-center px-6 pt-20">
-                        <div className="max-w-4xl text-center fade-in-up">
-                            <div className="mb-6">
-                                <span className="mono text-purple-400 text-sm">$ whoami</span>
-                            </div>
-                            <h1 className="text-6xl md:text-7xl font-bold mb-4">
-                                Hi, I'm <span className="gradient-text">ABXAR</span>
-                            </h1>
-                            <p className="text-2xl md:text-3xl text-gray-400 mb-6">
-                                Cybersecurity Researcher • Developer • Instructor
-                            </p>
-                            <p className="text-lg text-gray-500 mb-8 max-w-2xl mx-auto">
-                                Certified ethical hacker passionate about offensive security, penetration testing, and building vulnerable applications for security education
-                            </p>
-                            <div className="flex gap-4 justify-center flex-wrap">
-                                <a href="#projects" className="px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg font-semibold hover:from-purple-700 hover:to-indigo-700 transition">
-                                    View Projects
-                                </a>
-                                <a href="#contact" className="px-6 py-3 border border-purple-600 rounded-lg font-semibold hover:bg-purple-600 hover:bg-opacity-10 transition">
-                                    Get In Touch
-                                </a>
-                            </div>
-                            <div className="mt-12 flex gap-6 justify-center text-sm text-gray-500">
-                                <div className="flex items-center gap-2">
-                                    <span className="text-green-400">●</span> Top 1% TryHackMe
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <span className="text-green-400">●</span> Top 100 BlackHat CTF 2025
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="ey">Work</div>
+    <h2 class="st">FEATURED <em>PROJECTS</em></h2>
+    <div class="proj-g">
+      <a href="https://vapor-theta.vercel.app/" target="_blank" rel="noopener" class="pc rv" style="border-color:rgba(15,255,159,.12)">
+        <div class="pc-ic" style="background:rgba(15,255,159,.1);border:1px solid rgba(15,255,159,.2)">🛡️</div>
+        <div class="pc-t">VAPOR Labs</div>
+        <p class="pc-d">Custom intentionally vulnerable cybersecurity training platform simulating realistic Web Application & Infrastructure vulnerabilities.</p>
+        <div class="tags"><span class="tg" style="background:rgba(15,255,159,.08);color:var(--g);border:1px solid rgba(15,255,159,.15)">Python</span><span class="tg" style="background:rgba(15,255,159,.08);color:var(--g);border:1px solid rgba(15,255,159,.15)">Flask</span><span class="tg" style="background:rgba(15,255,159,.08);color:var(--g);border:1px solid rgba(15,255,159,.15)">OWASP</span></div>
+      </a>
+      <a href="https://sec-pulse.vercel.app/" target="_blank" rel="noopener" class="pc rv d1" style="border-color:rgba(0,212,255,.12)">
+        <div class="pc-ic" style="background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.2)">⚡</div>
+        <div class="pc-t">SecPulse</div>
+        <p class="pc-d">AI-powered vulnerability intelligence platform that transforms CVE noise into actionable security insights.</p>
+        <div class="tags"><span class="tg" style="background:rgba(0,212,255,.08);color:var(--c);border:1px solid rgba(0,212,255,.15)">CVEs</span><span class="tg" style="background:rgba(0,212,255,.08);color:var(--c);border:1px solid rgba(0,212,255,.15)">AI</span><span class="tg" style="background:rgba(0,212,255,.08);color:var(--c);border:1px solid rgba(0,212,255,.15)">Automation</span></div>
+      </a>
+      <a href="https://github.com/AB-X-AR/XTRACTOR" target="_blank" rel="noopener" class="pc rv d2" style="border-color:rgba(255,60,172,.12)">
+        <div class="pc-ic" style="background:rgba(255,60,172,.1);border:1px solid rgba(255,60,172,.2)">🔍</div>
+        <div class="pc-t">Xtractor</div>
+        <p class="pc-d">Automated tool to extract exploitable HTML/JS/CSS components for bug bounty reconnaissance and web app pentesting.</p>
+        <div class="tags"><span class="tg" style="background:rgba(255,60,172,.08);color:var(--p);border:1px solid rgba(255,60,172,.15)">Python</span><span class="tg" style="background:rgba(255,60,172,.08);color:var(--p);border:1px solid rgba(255,60,172,.15)">Bug Bounty</span><span class="tg" style="background:rgba(255,60,172,.08);color:var(--p);border:1px solid rgba(255,60,172,.15)">OSINT</span></div>
+      </a>
+      <a href="https://github.com/AB-X-AR/InSpectre" target="_blank" rel="noopener" class="pc rv" style="border-color:rgba(255,214,10,.12)">
+        <div class="pc-ic" style="background:rgba(255,214,10,.1);border:1px solid rgba(255,214,10,.2)">🌐</div>
+        <div class="pc-t">Inspectre</div>
+        <p class="pc-d">Lightweight JavaScript bookmarklet tool for instant form reconnaissance during security assessments.</p>
+        <div class="tags"><span class="tg" style="background:rgba(255,214,10,.08);color:var(--y);border:1px solid rgba(255,214,10,.15)">JavaScript</span><span class="tg" style="background:rgba(255,214,10,.08);color:var(--y);border:1px solid rgba(255,214,10,.15)">Bookmarklet</span></div>
+      </a>
+      <a href="https://github.com/AB-X-AR/xsspray" target="_blank" rel="noopener" class="pc rv d1" style="border-color:rgba(182,104,255,.12)">
+        <div class="pc-ic" style="background:rgba(182,104,255,.1);border:1px solid rgba(182,104,255,.2)">🔦</div>
+        <div class="pc-t">XSSPRAY</div>
+        <p class="pc-d">Chrome extension for security researchers to efficiently test XSS payloads during authorized security assessments.</p>
+        <div class="tags"><span class="tg" style="background:rgba(182,104,255,.08);color:var(--v);border:1px solid rgba(182,104,255,.15)">JavaScript</span><span class="tg" style="background:rgba(182,104,255,.08);color:var(--v);border:1px solid rgba(182,104,255,.15)">Chrome</span><span class="tg" style="background:rgba(182,104,255,.08);color:var(--v);border:1px solid rgba(182,104,255,.15)">XSS</span></div>
+      </a>
+      <a href="https://github.com/AB-X-AR/DirCop" target="_blank" rel="noopener" class="pc rv d2" style="border-color:rgba(255,120,73,.12)">
+        <div class="pc-ic" style="background:rgba(255,120,73,.1);border:1px solid rgba(255,120,73,.2)">🔨</div>
+        <div class="pc-t">DirCop</div>
+        <p class="pc-d">Lightweight web fuzzing tool for fast, customizable directory and parameter fuzzing during penetration tests.</p>
+        <div class="tags"><span class="tg" style="background:rgba(255,120,73,.08);color:var(--o);border:1px solid rgba(255,120,73,.15)">Python</span><span class="tg" style="background:rgba(255,120,73,.08);color:var(--o);border:1px solid rgba(255,120,73,.15)">Fuzzing</span></div>
+      </a>
+    </div>
+  </div>
+</section>
 
-                    {/* About Section */}
-                    <section id="about" className="min-h-screen flex items-center justify-center px-6 py-20">
-                        <div className="max-w-5xl w-full">
-                            <h2 className="text-4xl font-bold mb-12 section-title">About Me</h2>
-                            <div className="grid md:grid-cols-2 gap-8">
-                                <div className="glow-card p-8 rounded-lg">
-                                    <h3 className="text-xl font-semibold mb-4 text-purple-400">🎯 Professional Summary</h3>
-                                    <p className="text-gray-400 leading-relaxed">
-                                        Certified cybersecurity professional seeking entry-level offensive or defensive security roles. Hands-on experience in web application penetration testing, network security testing, and vulnerability assessment. Skilled in identifying and mitigating security risks while applying OWASP Top 10 and secure coding practices.
-                                    </p>
-                                </div>
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="ey">Expertise</div>
+    <h2 class="st">SKILLS &amp; <em>TOOLSET</em></h2>
+    <div class="sk-g">
+      <div class="sk-c rv"><div class="sk-h">🔧 Security Tools</div><div class="pills"><span class="pill">Burp Suite Pro</span><span class="pill">Nmap</span><span class="pill">Wireshark</span><span class="pill">Nikto</span><span class="pill">Nessus</span><span class="pill">OWASP ZAP</span><span class="pill">SQLMap</span><span class="pill">Nuclei</span><span class="pill">Metasploit</span></div></div>
+      <div class="sk-c rv d1"><div class="sk-h">💻 Programming & Databases</div><div class="pills"><span class="pill">Python</span><span class="pill">JavaScript</span><span class="pill">HTML</span><span class="pill">CSS</span><span class="pill">Bash</span><span class="pill">Node.js</span><span class="pill">Flask</span><span class="pill">Django</span><span class="pill">FastAPI</span><span class="pill">SQL</span><span class="pill">MongoDB</span></div></div>
+      <div class="sk-c rv"><div class="sk-h">🛡️ Security Domains</div><div class="pills"><span class="pill">Penetration Testing</span><span class="pill">Vulnerability Assessment</span><span class="pill">Network Security</span><span class="pill">API Security</span><span class="pill">Cloud Security</span><span class="pill">Threat Modeling</span></div></div>
+      <div class="sk-c rv d1"><div class="sk-h">📚 Frameworks & Standards</div><div class="pills"><span class="pill">OWASP Top 10</span><span class="pill">MITRE ATT&CK</span><span class="pill">NIST</span><span class="pill">ISO 27001</span><span class="pill">CVSS</span><span class="pill">CVE</span><span class="pill">CWE</span></div></div>
+      <div class="sk-c rv"><div class="sk-h">☁️ Cloud & OS</div><div class="pills"><span class="pill">AWS</span><span class="pill">GCP</span><span class="pill">Kali Linux</span><span class="pill">Parrot OS</span><span class="pill">Ubuntu</span><span class="pill">Arch Linux</span><span class="pill">Tails OS</span></div></div>
+      <div class="sk-c rv d1"><div class="sk-h">📈 Currently Learning</div><div class="pills"><span class="pill" style="border-color:rgba(15,255,159,.3);color:var(--g)">Malware Analysis</span><span class="pill" style="border-color:rgba(15,255,159,.3);color:var(--g)">Reverse Engineering</span><span class="pill" style="border-color:rgba(15,255,159,.3);color:var(--g)">Red Teaming</span><span class="pill" style="border-color:rgba(15,255,159,.3);color:var(--g)">Mobile Security</span></div></div>
+    </div>
+  </div>
+</section>
 
-                                <div className="glow-card p-8 rounded-lg">
-                                    <h3 className="text-xl font-semibold mb-4 text-purple-400">🎓 Education</h3>
-                                    <div className="space-y-2">
-                                        <p className="font-semibold">B.Tech Information Technology</p>
-                                        <p className="text-sm text-gray-400">with Cyber Security Specialization</p>
-                                        <p className="text-sm text-gray-500">Noorul Islam University, Kanyakumari</p>
-                                        <p className="text-sm text-gray-500">2020 – 2024 | CGPA: 7.63/10</p>
-                                    </div>
-                                    <div className="mt-6 pt-6 border-t border-gray-800">
-                                        {certifications.map((cert, i) => (
-                                            <div key={i} className="flex items-center gap-3">
-                                                <span className="text-2xl">{cert.icon}</span>
-                                                <div>
-                                                    <p className="font-semibold text-sm">{cert.name}</p>
-                                                    <p className="text-xs text-gray-500">{cert.code}</p>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="ey">Connect</div>
+    <h2 class="st">GET IN <em>TOUCH</em></h2>
+    <div class="ct-in">
+      <div class="rv">
+        <div class="ct-tl">OPEN TO SECURITY ROLES</div>
+        <p class="ct-desc">Actively seeking opportunities in offensive/defensive security. Whether you have a question or just want to connect — feel free to reach out!</p>
+        <a href="mailto:mashikabsardheen@gmail.com" class="cl"><div class="cl-ic">📧</div><div><div class="cl-l">Email</div><div class="cl-v">mashikabsardheen@gmail.com</div></div></a>
+        <a href="https://github.com/AB-X-AR" target="_blank" rel="noopener" class="cl"><div class="cl-ic">💻</div><div><div class="cl-l">GitHub</div><div class="cl-v">github.com/AB-X-AR</div></div></a>
+        <a href="https://www.linkedin.com/in/mashik-absar-dheen" target="_blank" rel="noopener" class="cl"><div class="cl-ic">💼</div><div><div class="cl-l">LinkedIn</div><div class="cl-v">Mashik Absar Dheen</div></div></a>
+        <a href="https://medium.com/@abxar" target="_blank" rel="noopener" class="cl"><div class="cl-ic">📝</div><div><div class="cl-l">Medium Blog</div><div class="cl-v">@abxar — CTF Write-ups</div></div></a>
+      </div>
+      <div class="rv d2">
+        <div class="status-box">
+          <div class="sb-top"><div class="sb-dot"></div><div class="sb-lbl">AVAILABLE FOR WORK</div></div>
+          <div class="sb-t">LOOKING FOR ROLES</div>
+          <p class="sb-d">Actively seeking entry-level offensive or defensive security positions. Bringing hands-on experience, real certifications, and a genuine passion for breaking (and fixing) things.</p>
+          <div class="sb-tags"><span class="stag">Penetration Tester</span><span class="stag">SOC Analyst</span><span class="stag">Bug Bounty Hunter</span><span class="stag">Security Researcher</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-                    {/* Experience Section */}
-                    <section id="experience" className="min-h-screen flex items-center justify-center px-6 py-20">
-                        <div className="max-w-5xl w-full">
-                            <h2 className="text-4xl font-bold mb-12 section-title">Experience</h2>
-                            
-                            <div className="glow-card p-8 rounded-lg mb-8">
-                                <div className="flex justify-between items-start mb-4 flex-wrap gap-4">
-                                    <div>
-                                        <h3 className="text-2xl font-semibold text-purple-400">Cyber Security Instructor</h3>
-                                        <p className="text-gray-400">Cyber Heals</p>
-                                    </div>
-                                    <span className="text-sm text-gray-500 mono">Sep 2024 – May 2025</span>
-                                </div>
-                                <ul className="space-y-3 text-gray-400">
-                                    <li className="flex gap-3">
-                                        <span className="text-purple-400">▹</span>
-                                        <span>Delivered 10+ lectures and workshops on cybersecurity across colleges including Jamal Mohamed College, Saveetha Engineering College, and Siva Nada University</span>
-                                    </li>
-                                    <li className="flex gap-3">
-                                        <span className="text-purple-400">▹</span>
-                                        <span>Served as invigilator for HackQuest 2K25 CTF at JMC, Trichy</span>
-                                    </li>
-                                    <li className="flex gap-3">
-                                        <span className="text-purple-400">▹</span>
-                                        <span>Trained 300+ students across different colleges</span>
-                                    </li>
-                                    <li className="flex gap-3">
-                                        <span className="text-purple-400">▹</span>
-                                        <span>Taught hands-on skills using Burp Suite, Nmap, Wireshark, Linux and guided students in penetration testing</span>
-                                    </li>
-                                </ul>
-                            </div>
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="ft">
+      <div class="fl"><span>[</span>abxar<span>]</span>.dev</div>
+      <div class="fc">Built with HTML/CSS/JS • Designed by ABXAR | © 2026 All Rights Reserved</div>
+      <div class="fls"><a href="https://github.com/AB-X-AR" target="_blank">GitHub</a><a href="https://medium.com/@abxar" target="_blank">Blog</a><a href="mailto:mashikabsardheen@gmail.com">Email</a></div>
+    </div>
+  </div>
+</footer>
 
-                            <div className="glow-card p-8 rounded-lg">
-                                <h3 className="text-xl font-semibold mb-4 text-purple-400">🏆 Achievements & Activities</h3>
-                                <div className="grid md:grid-cols-2 gap-4">
-                                    <div className="flex items-start gap-3">
-                                        <span className="text-green-400 text-xl">✓</span>
-                                        <div>
-                                            <p className="font-semibold">Top 1% TryHackMe</p>
-                                            <p className="text-sm text-gray-500">Consistently ranked in top 1%</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-start gap-3">
-                                        <span className="text-green-400 text-xl">✓</span>
-                                        <div>
-                                            <p className="font-semibold">Top 100 BlackHat USA</p>
-                                            <p className="text-sm text-gray-500">w/ BUGCROWD CTF 2025</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-start gap-3">
-                                        <span className="text-green-400 text-xl">✓</span>
-                                        <div>
-                                            <p className="font-semibold">CTF Write-ups</p>
-                                            <p className="text-sm text-gray-500">Published on blog & Medium</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-start gap-3">
-                                        <span className="text-green-400 text-xl">✓</span>
-                                        <div>
-                                            <p className="font-semibold">Active Contributor</p>
-                                            <p className="text-sm text-gray-500">Open source security tools</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+<script>
+/* CURSOR */
+const cur=document.getElementById('cur'),ring=document.getElementById('cur-r');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function anim(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(anim)})();
+document.querySelectorAll('a,button,.pc,.cl,.ac,.ach,.pill').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.width='18px';cur.style.height='18px'});
+  el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px'});
+});
 
-                    {/* Projects Section */}
-                    <section id="projects" className="min-h-screen flex items-center justify-center px-6 py-20">
-                        <div className="max-w-5xl w-full">
-                            <h2 className="text-4xl font-bold mb-12 section-title">Featured Projects</h2>
-                            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                {projects.map((project, i) => (
-                                    <a
-                                        key={i}
-                                        href={project.link}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="glow-card p-6 rounded-lg block"
-                                    >
-                                        <div className="text-4xl mb-4">{project.icon}</div>
-                                        <h3 className="text-xl font-semibold mb-3">{project.title}</h3>
-                                        <p className="text-gray-400 text-sm mb-4 leading-relaxed">
-                                            {project.description}
-                                        </p>
-                                        <div className="flex flex-wrap gap-2">
-                                            {project.tags.map((tag, j) => (
-                                                <span key={j} className="text-xs px-2 py-1 bg-purple-600 bg-opacity-20 text-purple-300 rounded">
-                                                    {tag}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    </a>
-                                ))}
-                            </div>
-                        </div>
-                    </section>
+/* NAV */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('on',scrollY>60),{passive:true});
+const ham=document.getElementById('ham'),mob=document.getElementById('mob');
+ham.addEventListener('click',()=>{const o=mob.classList.toggle('on');ham.classList.toggle('on',o);document.body.style.overflow=o?'hidden':''});
+mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mob.classList.remove('on');ham.classList.remove('on');document.body.style.overflow=''}));
 
-                    {/* Skills Section */}
-                    <section id="skills" className="min-h-screen flex items-center justify-center px-6 py-20">
-                        <div className="max-w-5xl w-full">
-                            <h2 className="text-4xl font-bold mb-12 section-title">Skills & Expertise</h2>
-                            
-                            <div className="grid md:grid-cols-2 gap-8 mb-8">
-                                <div className="glow-card p-6 rounded-lg">
-                                    <h3 className="text-xl font-semibold mb-4 text-purple-400">🔧 Security Tools</h3>
-                                    <div className="flex flex-wrap gap-2">
-                                        {['Burp Suite Pro', 'Nmap', 'Wireshark', 'Nikto', 'Nessus', 'OWASP ZAP', 'SQLMap', 'Nuclei', 'Metasploit'].map(skill => (
-                                            <span key={skill} className="skill-tag px-3 py-1 rounded text-sm">{skill}</span>
-                                        ))}
-                                    </div>
-                                </div>
+/* SMOOTH SCROLL */
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(!t)return;e.preventDefault();t.scrollIntoView({behavior:'smooth'})}));
 
-                                <div className="glow-card p-6 rounded-lg">
-                                    <h3 className="text-xl font-semibold mb-4 text-purple-400">💻 Programming & Databases</h3>
-                                    <div className="flex flex-wrap gap-2">
-                                        {['Python', 'JavaScript','HTML','CSS', 'Bash', 'Node.js', 'Flask', 'Django', 'FastAPI', 'SQL', 'MongoDB', 'REST API'].map(skill => (
-                                            <span key={skill} className="skill-tag px-3 py-1 rounded text-sm">{skill}</span>
-                                        ))}
-                                    </div>
-                                </div>
+/* ACTIVE NAV */
+const secs=document.querySelectorAll('section[id]'),nls=document.querySelectorAll('.nav-ul a');
+const navObs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)nls.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id))}),{threshold:0.45});
+secs.forEach(s=>navObs.observe(s));
 
-                                <div className="glow-card p-6 rounded-lg">
-                                    <h3 className="text-xl font-semibold mb-4 text-purple-400">🛡️ Security Domains</h3>
-                                    <div className="flex flex-wrap gap-2">
-                                        {['Penetration Testing', 'Vulnerability Assessment', 'Network Security', 'API Security', 'Cloud Security', 'Threat Modeling', 'Risk Assessment'].map(skill => (
-                                            <span key={skill} className="skill-tag px-3 py-1 rounded text-sm">{skill}</span>
-                                        ))}
-                                    </div>
-                                </div>
+/* SCROLL REVEAL */
+const ro=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:0.1});
+document.querySelectorAll('.rv').forEach(el=>ro.observe(el));
 
-                                <div className="glow-card p-6 rounded-lg">
-                                    <h3 className="text-xl font-semibold mb-4 text-purple-400">📚 Frameworks & Standards</h3>
-                                    <div className="flex flex-wrap gap-2">
-                                        {['OWASP Top 10', 'MITRE ATT&CK', 'NIST', 'ISO 27001', 'CVSS', 'CVE', 'CWE'].map(skill => (
-                                            <span key={skill} className="skill-tag px-3 py-1 rounded text-sm">{skill}</span>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
+/* ═══════════════════════════════════
+   INTERACTIVE TERMINAL ENGINE
+═══════════════════════════════════ */
+const tBody=document.getElementById('tBody');
+const tInput=document.getElementById('tInput');
 
-                            <div className="grid md:grid-cols-2 gap-8">
-                                <div className="glow-card p-6 rounded-lg">
-                                    <h3 className="text-xl font-semibold mb-4 text-purple-400">☁️ Cloud Platforms</h3>
-                                    <div className="flex flex-wrap gap-2">
-                                        {['AWS', 'GCP'].map(skill => (
-                                            <span key={skill} className="skill-tag px-3 py-1 rounded text-sm">{skill}</span>
-                                        ))}
-                                    </div>
-                                </div>
+const CMD={
+  help:{fn:()=>[
+    {c:'wh',v:'╔══════════════════════════════════════════╗'},
+    {c:'wh',v:'║   ABXAR TERMINAL  v2.0  |  type away    ║'},
+    {c:'wh',v:'╚══════════════════════════════════════════╝'},
+    {c:'dim',v:''},
+    {c:'g',  v:' CORE COMMANDS'},
+    {c:'',   v:'  whoami        →  Who is ABXAR?'},
+    {c:'',   v:'  hobby         →  What I do for fun'},
+    {c:'',   v:'  skills        →  My technical arsenal'},
+    {c:'',   v:'  projects      →  Tools I built'},
+    {c:'',   v:'  cert          →  Certifications & badges'},
+    {c:'',   v:'  ctf           →  CTF achievements'},
+    {c:'',   v:'  status        →  Job availability'},
+    {c:'',   v:'  contact       →  How to reach me'},
+    {c:'dim',v:''},
+    {c:'c',  v:' FUN COMMANDS'},
+    {c:'',   v:'  os            →  My OS tier list'},
+    {c:'',   v:'  tools         →  Full hacking toolkit'},
+    {c:'',   v:'  music         →  What I hack to'},
+    {c:'',   v:'  setup         →  My battle station'},
+    {c:'',   v:'  villain       →  Which hacker villain am I?'},
+    {c:'',   v:'  chess         →  My chess stats & thoughts'},
+    {c:'',   v:'  bugbounty     →  My bug hunting journey'},
+    {c:'',   v:'  meme          →  Drop a security meme'},
+    {c:'',   v:'  quote         →  Random hacker wisdom'},
+    {c:'',   v:'  joke          →  A terrible security joke'},
+    {c:'',   v:'  ascii         →  ABXAR in ASCII art'},
+    {c:'',   v:'  date          →  Current system time'},
+    {c:'',   v:'  sudo !!       →  Try your luck 😏'},
+    {c:'dim',v:''},
+    {c:'y',  v:' ↑↓ arrow keys = history  |  Tab = autocomplete'},
+  ]},
 
-                                <div className="glow-card p-6 rounded-lg">
-                                    <h3 className="text-xl font-semibold mb-4 text-purple-400">🐧 Operating Systems</h3>
-                                    <div className="flex flex-wrap gap-2">
-                                        {['Kali Linux', 'Parrot OS', 'Ubuntu', 'Arch Linux', 'Windows', 'Tails OS'].map(skill => (
-                                            <span key={skill} className="skill-tag px-3 py-1 rounded text-sm">{skill}</span>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+  whoami:{fn:()=>[
+    {c:'g',v:'┌─[ IDENTITY SCAN ]────────────────────────┐'},
+    {c:'g',v:'│'},
+    {c:'', v:'│  Name     :  Mashik Absar Dheen'},
+    {c:'', v:'│  Handle   :  ABXAR'},
+    {c:'c', v:'│  Role     :  Cybersecurity Researcher'},
+    {c:'c', v:'│             Developer & Instructor'},
+    {c:'y', v:'│  Cert     :  CEH v12  (EC-Council)'},
+    {c:'', v:'│  Degree   :  B.Tech IT + Cybersecurity'},
+    {c:'', v:'│  College  :  Noorul Islam University'},
+    {c:'', v:'│  CGPA     :  7.63 / 10'},
+    {c:'', v:'│  Location :  Kerala, India 🇮🇳'},
+    {c:'g', v:'│  Email    :  mashikabsardheen@gmail.com'},
+    {c:'p', v:'│  GitHub   :  github.com/AB-X-AR'},
+    {c:'v', v:'│  LinkedIn :  mashik-absar-dheen'},
+    {c:'g',v:'│'},
+    {c:'g',v:'└──────────────────────────────────────────┘'},
+  ]},
 
-                    {/* Contact Section */}
-                    <section id="contact" className="min-h-screen flex items-center justify-center px-6 py-20">
-                        <div className="max-w-3xl w-full text-center">
-                            <h2 className="text-4xl font-bold mb-6">Get In Touch</h2>
-                            <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
-                                I'm currently seeking opportunities in offensive/defensive security roles. Whether you have a question or just want to connect, feel free to reach out!
-                            </p>
-                            
-                            <div className="glow-card p-8 rounded-lg inline-block">
-                                <div className="flex flex-col gap-4">
-                                    <a href="mailto:your.email@example.com" className="flex items-center gap-3 text-lg hover:text-purple-400 transition">
-                                        <span>📧</span>
-                                        <span>mashikabsardheen@gmail.com</span>
-                                    </a>
-                                    <a href="https://github.com/AB-X-AR" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-lg hover:text-purple-400 transition">
-                                        <span>💻</span>
-                                        <span>GitHub</span>
-                                    </a>
-                                    <a href="https://www.linkedin.com/in/mashik-absar-dheen" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-lg hover:text-purple-400 transition">
-                                        <span>💼</span>
-                                        <span>LinkedIn</span>
-                                    </a>
-                                    <a href="https://medium.com/@abxar" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-lg hover:text-purple-400 transition">
-                                        <span>📝</span>
-                                        <span>Medium Blog</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+  hobby:{fn:()=>[
+    {c:'p', v:'[ HOBBY SCAN ] — Scanning abxar\'s life...'},
+    {c:'dim',v:''},
+    {c:'g', v:'  🕵️  Penetration Testing'},
+    {c:'dim',v:'      Finding real bugs in real systems.'},
+    {c:'dim',v:'      "Every target is a puzzle." — me at 2am'},
+    {c:'y', v:'  ♟️  Chess'},
+    {c:'dim',v:'      Elo grind never stops. Think 5 moves ahead.'},
+    {c:'dim',v:'      Chess and hacking have the same brain.'},
+    {c:'c', v:'  🐛  Bug Bounty Hunting'},
+    {c:'dim',v:'      Getting paid to legally break websites.'},
+    {c:'dim',v:'      Hall of Fame entries incoming.'},
+    {c:'v', v:'  💻  Coding'},
+    {c:'dim',v:'      Building tools nobody asked for but everyone needs.'},
+    {c:'dim',v:'      Python at midnight hits different.'},
+    {c:'o', v:'  😂  Meme Creation'},
+    {c:'dim',v:'      Security memes are my love language.'},
+    {c:'dim',v:'      My memes have more CVEs than some codebases.'},
+    {c:'p', v:'  🔍  CTF Competitions'},
+    {c:'dim',v:'      Weekend plans? CTF. Holiday plans? CTF.'},
+    {c:'y', v:'  📖  Reading CVE Reports'},
+    {c:'dim',v:'      Bedtime reading: NVD vulnerability database.'},
+    {c:'g', v:'  🎯  OSINT Deep Dives'},
+    {c:'dim',v:'      Google dorking is a superpower fr.'},
+  ]},
 
-                    {/* Footer */}
-                    <footer className="border-t border-gray-900 py-8 text-center text-gray-500 text-sm">
-                        <p className="mono">Built with React • Designed by ABXAR</p>
-                        <p className="mt-2">© 2026 All Rights Reserved</p>
-                    </footer>
-                </div>
-            );
-        }
+  chess:{fn:()=>[
+    {c:'y',v:'♟️  [ CHESS MODULE LOADED ]'},
+    {c:'dim',v:''},
+    {c:'wh',v:'  "Chess is hacking the opponent\'s mind."'},
+    {c:'dim',v:''},
+    {c:'g', v:'  Platform   :  Chess.com & Lichess'},
+    {c:'c', v:'  Style      :  Aggressive. Always attacking.'},
+    {c:'y', v:'  Favourite  :  Sicilian Defense (obviously)'},
+    {c:'p', v:'  Opening    :  King\'s Indian as Black'},
+    {c:'v', v:'  Weakness   :  Endgames (working on it 🥲)'},
+    {c:'dim',v:''},
+    {c:'g', v:'  Hot take: Chess players make better pentesters.'},
+    {c:'dim',v:'  Both require pattern recognition & reading opponent moves.'},
+  ]},
 
-        ReactDOM.render(<App />, document.getElementById('root'));
-    </script>
+  bugbounty:{fn:()=>[
+    {c:'g',v:'🐛 [ BUG BOUNTY JOURNEY ]'},
+    {c:'dim',v:''},
+    {c:'c', v:'  Platforms   :  HackerOne, Bugcrowd, Intigriti'},
+    {c:'g', v:'  Focus       :  Web App, API, Recon-heavy'},
+    {c:'y', v:'  Top finds   :  XSS, IDOR, Broken Auth, SSRF'},
+    {c:'p', v:'  Tools       :  Burp Suite Pro + custom scripts'},
+    {c:'dim',v:''},
+    {c:'wh',v:'  Methodology:'},
+    {c:'',  v:'  [1] Recon → Xtractor, Shodan, theHarvester'},
+    {c:'',  v:'  [2] Enum  → DirCop, ffuf, Nuclei templates'},
+    {c:'',  v:'  [3] Attack → Burp, XSSPRAY, manual testing'},
+    {c:'',  v:'  [4] Report → Clear PoC, CVSS score, fix recommendation'},
+    {c:'dim',v:''},
+    {c:'g', v:'  Status: Actively hunting 🔍'},
+  ]},
+
+  meme:{fn:()=>{
+    const m=[
+      ['Security meme dropped:','[Interviewer]: Any experience with large-scale attacks?','[Me]: Yes, I trained 300 students 💀'],
+      ['Security meme dropped:','WiFi password: "incorrect"','Me: That\'s the wrong password','Router: That IS the password'],
+      ['Security meme dropped:','Pentester: I found 47 vulnerabilities in your app','Client: We only paid for 10 findings report','Pentester: ...........'],
+      ['Security meme dropped:','Me looking at a login form:','Normal people: username + password','Me: \' OR 1=1 -- -'],
+      ['Security meme dropped:','Sleep schedule of a CTF player:','Day 1: "just for an hour"','Day 3: *still reversing the binary*'],
+    ];
+    const pick=m[Math.floor(Math.random()*m.length)];
+    return pick.map((line,i)=>({c:i===0?'p':i===1?'wh':'dim',v:'  '+line}));
+  }},
+
+  music:{fn:()=>[
+    {c:'v',v:'🎵 [ HACKING PLAYLIST ]'},
+    {c:'dim',v:''},
+    {c:'g', v:'  Genre   :  Phonk, Synthwave, Dark Techno'},
+    {c:'c', v:'  Mood    :  Deep focus CTF sessions'},
+    {c:'y', v:'  Artists :  Night Lovell, Ghostemane, HEALTH'},
+    {c:'p', v:'  Vibe    :  If it sounds like a hacker movie, it\'s perfect'},
+    {c:'dim',v:''},
+    {c:'wh',v:'  Now Playing: ████████████████░░░░ 80%'},
+    {c:'g', v:'  ♪  Unknown Signal — Synthwave Radio'},
+  ]},
+
+  setup:{fn:()=>[
+    {c:'c',v:'🖥️  [ BATTLE STATION SPEC ]'},
+    {c:'dim',v:''},
+    {c:'g', v:'  OS        :  Kali Linux (daily) / Windows (reluctantly)'},
+    {c:'y', v:'  Terminal  :  Terminator + ZSH + Oh-My-Zsh'},
+    {c:'c', v:'  Editor    :  VS Code + Vim for quick edits'},
+    {c:'p', v:'  Browser   :  Firefox (Burp proxy always on)'},
+    {c:'v', v:'  VPN       :  Always. Non-negotiable.'},
+    {c:'o', v:'  Keyboard  :  Mechanical — clickiest switches possible'},
+    {c:'dim',v:''},
+    {c:'wh',v:'  "A clean terminal is a hacker\'s canvas."'},
+  ]},
+
+  villain:{fn:()=>[
+    {c:'p',v:'🎭 [ HACKER VILLAIN CLASSIFIER ]'},
+    {c:'dim',v:'  Scanning personality matrix...'},
+    {c:'dim',v:''},
+    {c:'g', v:'  Result: Mr. Robot\'s Elliot Alderson'},
+    {c:'dim',v:''},
+    {c:'', v:'  ✓ Quiet and calculated'},
+    {c:'', v:'  ✓ Builds tools instead of using kits'},
+    {c:'', v:'  ✓ Finds bugs others miss'},
+    {c:'', v:'  ✓ Terrible sleep schedule'},
+    {c:'', v:'  ✓ Motivated by curiosity not chaos'},
+    {c:'dim',v:''},
+    {c:'y', v:'  "Give a man a 0day and you own him for a day.'},
+    {c:'y', v:'   Teach a man to find 0days and you own him forever."'},
+  ]},
+
+  os:{fn:()=>[
+    {c:'g',v:'🐧 [ OS TIER LIST ]'},
+    {c:'dim',v:''},
+    {c:'g', v:'  S  │  Kali Linux     — daily pentesting driver'},
+    {c:'c', v:'  A  │  Parrot OS      — lightweight & sneaky'},
+    {c:'v', v:'  A  │  Arch Linux     — when I want to suffer productively'},
+    {c:'y', v:'  B  │  Ubuntu         — for normal human tasks'},
+    {c:'p', v:'  C  │  Tails OS       — maximum ghost mode'},
+    {c:'dim',v:'  D  │  Windows        — exists on my PC for gaming only'},
+    {c:'dim',v:''},
+    {c:'o', v:'  Hot take: if you\'re pentesting on Windows you\'re wrong.'},
+  ]},
+
+  tools:{fn:()=>[
+    {c:'c',v:'🧰 [ FULL TOOLKIT ]'},
+    {c:'dim',v:''},
+    {c:'g', v:'  Recon   :  Nmap, Shodan, theHarvester, Amass, Recon-ng'},
+    {c:'p', v:'  Web     :  Burp Suite Pro, OWASP ZAP, Nikto, WPScan'},
+    {c:'y', v:'  Exploit :  Metasploit, SQLMap, XSSHunter, BeEF'},
+    {c:'c', v:'  Fuzz    :  Nuclei, FFUF, Gobuster, DirCop (mine!)'},
+    {c:'v', v:'  OSINT   :  Maltego, Xtractor (mine!), SpiderFoot'},
+    {c:'o', v:'  Network :  Wireshark, Nessus, Aircrack-ng, Ettercap'},
+    {c:'g', v:'  Custom  :  VAPOR, SecPulse, XSSPRAY, Inspectre (all mine)'},
+  ]},
+
+  cert:{fn:()=>[
+    {c:'y',v:'🏅 [ CERTIFICATIONS ]'},
+    {c:'dim',v:''},
+    {c:'g', v:'  ✅  EC-Council CEH v12  — ACTIVE'},
+    {c:'dim',v:'      Certified Ethical Hacker'},
+    {c:'dim',v:''},
+    {c:'c', v:'  📌  In Progress:'},
+    {c:'v', v:'  🔄  OSCP  — Offensive Security Certified Pro'},
+    {c:'p', v:'  🔄  eWPTX — Web Application Pentesting Expert'},
+    {c:'y', v:'  🔄  CEH Master — Advanced track'},
+  ]},
+
+  ctf:{fn:()=>[
+    {c:'p',v:'🏴 [ CTF HALL OF FAME ]'},
+    {c:'dim',v:''},
+    {c:'g', v:'  🏆  Top 100  — BlackHat USA w/ BUGCROWD CTF 2025'},
+    {c:'y', v:'  🥇  Top 1%   — TryHackMe (global ranking)'},
+    {c:'c', v:'  🏴  HackQuest 2K25 — Invigilator + Participant at JMC Trichy'},
+    {c:'v', v:'  📝  CTF Write-ups published → medium.com/@abxar'},
+    {c:'dim',v:''},
+    {c:'wh',v:'  Fav categories: Web, OSINT, Forensics, Misc'},
+    {c:'',  v:'  "There\'s no hint button. Just skill and Google."'},
+  ]},
+
+  status:{fn:()=>[
+    {c:'g',v:'● STATUS: ONLINE & ACTIVELY LOOKING'},
+    {c:'dim',v:''},
+    {c:'wh',v:'  Currently seeking:'},
+    {c:'g', v:'  ✓  Penetration Tester (junior/mid)'},
+    {c:'g', v:'  ✓  Bug Bounty Collaborations'},
+    {c:'g', v:'  ✓  SOC Analyst'},
+    {c:'g', v:'  ✓  Security Researcher'},
+    {c:'c', v:'  ✓  Remote-friendly or Kerala-based'},
+    {c:'dim',v:''},
+    {c:'y', v:'  Response time: < 24 hours (usually much faster)'},
+    {c:'p', v:'  Best contact: mashikabsardheen@gmail.com'},
+  ]},
+
+  contact:{fn:()=>[
+    {c:'g',v:'📡 [ CONTACT CHANNELS ]'},
+    {c:'dim',v:''},
+    {c:'c', v:'  📧  mashikabsardheen@gmail.com'},
+    {c:'g', v:'  💻  github.com/AB-X-AR'},
+    {c:'v', v:'  💼  linkedin.com/in/mashik-absar-dheen'},
+    {c:'y', v:'  📝  medium.com/@abxar'},
+    {c:'dim',v:''},
+    {c:'',  v:'  Preferred: Email or LinkedIn DM'},
+    {c:'g', v:'  Always down to talk security, CTF, or bugs 🐛'},
+  ]},
+
+  quote:{fn:()=>{
+    const q=[
+      '"The quieter you become, the more you are able to hear." — Kali Linux',
+      '"Every system is breakable. The question is who breaks it first." — ABXAR',
+      '"Security through obscurity is not security at all." — Classic',
+      '"There are two types of companies: hacked and don\'t know yet." — John Chambers',
+      '"The best defense is understanding the offense." — Red Team philosophy',
+      '"Hackers don\'t break systems. Weak systems break themselves." — Unknown',
+      '"In the beginner\'s mind there are many possibilities. In the expert\'s, few." — Shunryu Suzuki',
+    ];
+    return[{c:'y',v:'"'+q[Math.floor(Math.random()*q.length)]+'"'}];
+  }},
+
+  joke:{fn:()=>{
+    const j=[
+      ['Why do hackers prefer dark mode?','Because light attracts bugs! 🐛'],
+      ['Why did the SQL injection go to therapy?','Too many unescaped issues.'],
+      ['How many pentesters to change a lightbulb?','Zero — that\'s in scope for the client to fix.'],
+      ['Why don\'t ethical hackers go outside?','Too many open ports out there.'],
+      ['What\'s a hacker\'s favourite tea?','Kali-bergé. 🍵'],
+    ];
+    const pick=j[Math.floor(Math.random()*j.length)];
+    return[{c:'y',v:'Q: '+pick[0]},{c:'g',v:'A: '+pick[1]}];
+  }},
+
+  ascii:{fn:()=>[
+    {c:'g',v:' █████╗ ██████╗ ██╗  ██╗ █████╗ ██████╗'},
+    {c:'g',v:'██╔══██╗██╔══██╗╚██╗██╔╝██╔══██╗██╔══██╗'},
+    {c:'c',v:'███████║██████╔╝ ╚███╔╝ ███████║██████╔╝'},
+    {c:'c',v:'██╔══██║██╔══██╗ ██╔██╗ ██╔══██║██╔══██╗'},
+    {c:'p',v:'██║  ██║██████╔╝██╔╝ ██╗██║  ██║██║  ██║'},
+    {c:'p',v:'╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝'},
+    {c:'dim',v:''},
+    {c:'y',v:'       Cybersecurity Researcher & Developer'},
+    {c:'dim',v:'       India  |  CEH v12  |  Top 1% THM'},
+  ]},
+
+  date:{fn:()=>{
+    const n=new Date();
+    return[
+      {c:'c',v:'🕒 [ SYSTEM CLOCK ]'},
+      {c:'', v:'   Date  : '+n.toDateString()},
+      {c:'', v:'   Time  : '+n.toTimeString().split(' ')[0]},
+      {c:'', v:'   Zone  : '+Intl.DateTimeFormat().resolvedOptions().timeZone},
+      {c:'g', v:'   Mode  : Hacking 🟢'},
+    ];
+  }},
+
+  'sudo !!':{fn:()=>[
+    {c:'p',v:'[sudo] password for abxar:'},
+    {c:'p',v:'Sorry, 3 incorrect password attempts.'},
+    {c:'y',v:'abxar is not in the sudoers file.'},
+    {c:'dim',v:'This incident will be reported. (jk 😄)'},
+  ]},
+
+  clear:{fn:()=>'CLEAR'},
+  exit:{fn:()=>[{c:'g',v:'Nice try. You can\'t escape this terminal. 😄'}]},
+  pwd:{fn:()=>[{c:'',v:'/home/abxar/cyberspace'}]},
+  ls:{fn:()=>[{c:'g',v:'projects/  skills/  certs/  writeups/  memes/  chess_games/'}]},
+  uname:{fn:()=>[{c:'',v:'Kali GNU/Linux  |  kernel: 6.6.9  |  arch: x86_64'}]},
+};
+
+let hist=[],hIdx=0;
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+function addLine(cls,text){
+  const d=document.createElement('div');
+  d.className='t-line'+(cls?' '+cls:'');
+  d.textContent=text;
+  tBody.appendChild(d);
+  tBody.scrollTop=tBody.scrollHeight;
+}
+
+function addInput(cmd){
+  const d=document.createElement('div');
+  d.className='t-line';
+  d.innerHTML='<span class="tps">abxar@kali:~$</span> <span class="tcmd"> '+esc(cmd)+'</span>';
+  tBody.appendChild(d);
+}
+
+function run(raw){
+  const cmd=raw.trim();
+  addInput(cmd);
+  if(!cmd){tBody.scrollTop=tBody.scrollHeight;return}
+  const key=cmd.toLowerCase();
+  if(hist[hist.length-1]!==key)hist.push(key);
+  hIdx=hist.length;
+
+  const c=CMD[key];
+  if(!c){
+    addLine('p','bash: '+esc(cmd)+': command not found');
+    addLine('dim','Hint: type "help" to see all commands');
+    return;
+  }
+  const out=c.fn();
+  if(out==='CLEAR'){tBody.innerHTML='';return}
+  out.forEach((line,i)=>setTimeout(()=>addLine(line.c,line.v),i*15));
+}
+
+/* Welcome */
+setTimeout(()=>{
+  addLine('dim','Last login: '+new Date().toDateString());
+  addLine('g','Welcome to ABXAR Terminal v2.0');
+  addLine('','Type  help  to see all available commands');
+  addLine('dim','─────────────────────────────────────────');
+},300);
+
+tInput.addEventListener('keydown',e=>{
+  if(e.key==='Enter'){const v=tInput.value;tInput.value='';run(v);}
+  else if(e.key==='ArrowUp'){e.preventDefault();if(hIdx>0){hIdx--;tInput.value=hist[hIdx]||''}}
+  else if(e.key==='ArrowDown'){e.preventDefault();if(hIdx<hist.length-1){hIdx++;tInput.value=hist[hIdx]||''}else{hIdx=hist.length;tInput.value=''}}
+  else if(e.key==='Tab'){
+    e.preventDefault();
+    const v=tInput.value.trim().toLowerCase();
+    const m=Object.keys(CMD).find(k=>k.startsWith(v)&&k!==v);
+    if(m)tInput.value=m;
+  }
+});
+
+document.getElementById('terminal').addEventListener('click',()=>tInput.focus());
+</script>
 </body>
 </html>
